@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>TaskFlow – Task List</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header>
+    <h1>TaskFlow</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="add-task.html">Add Task</a>
+      <a href="task-list.html">Task List</a>
+      <a href="task-detail.html">Task Detail</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+  <div class="container">
+    <h2>All Tasks</h2>
+    <div style="margin-bottom:10px;">
+      <button class="btn">All</button>
+      <button class="btn">Pending</button>
+      <button class="btn">Completed</button>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Title</th><th>Due Date</th><th>Priority</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Design UI</td><td>2026-06-20</td><td>High</td><td>Pending</td></tr>
+        <tr><td>Write Tests</td><td>2026-06-25</td><td>Medium</td><td>Completed</td></tr>
+        <tr><td>Deploy App</td><td>2026-06-30</td><td>High</td><td>Pending</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <footer>TaskFlow &copy; 2026</footer>
+</body>
+</html>
