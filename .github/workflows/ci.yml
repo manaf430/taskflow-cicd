@@ -1,0 +1,35 @@
+name: CI – Build & Push Docker Image
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build-and-push:
+    name: CI
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Step 1 – Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Step 2 – Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Step 3 – Build Docker Image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/taskflow-cicd:latest .
+
+      - name: Step 4 – Tag Image with Commit SHA
+        run: |
+          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/taskflow-cicd:latest \
+            ${{ secrets.DOCKERHUB_USERNAME }}/taskflow-cicd:${{ github.sha }}
+
+      - name: Step 5 – Push Image to Docker Hub
+        run: |
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/taskflow-cicd:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/taskflow-cicd:${{ github.sha }}
